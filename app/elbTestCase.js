@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-var reqId = 0;
+var reqId = 1;
 
 //app.param('uid', /^\d+$/);
 
@@ -18,7 +18,7 @@ app.get('/', function(req, res, next){
 
 app.get('/hello/:uid', function(req, res, next){
   var result = {
-    requestId: ++reqId,
+    requestId: reqId++,
     uid: req.params.uid,
     requestIps: req.ips,
     host: getHostName(),
