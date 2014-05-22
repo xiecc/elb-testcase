@@ -7,7 +7,7 @@ var reqId = 0;
 
 app.get('/', function(req, res, next){
   var result = {
-    requestId: ++reqId,
+    requestId: reqId,
     requestIps: req.ips,
     host: getHostName(),
     timestamp: new Date().getTime()
