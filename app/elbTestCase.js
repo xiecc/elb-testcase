@@ -5,6 +5,16 @@ var reqId = 0;
 
 //app.param('uid', /^\d+$/);
 
+app.get('/', function(req, res, next){
+  var result = {
+    requestId: ++reqId,
+    requestIps: req.ips,
+    host: getHostName(),
+    timestamp: new Date().getTime()
+  }
+  console.log('[RequestLog] /', result);
+  res.send(JSON.stringify(result));
+});
 
 app.get('/hello/:uid', function(req, res, next){
   var result = {
@@ -15,7 +25,7 @@ app.get('/hello/:uid', function(req, res, next){
     timestamp: new Date().getTime()
   };
 
-  console.log('[RequestLog] ', result);
+  console.log('[RequestLog] /hello/:uid ', result);
 
   res.cookie('uid', req.params.uid, {expires: new Date(Date.now() + 900000), httpOnly:true});
   res.send(JSON.stringify(result));
